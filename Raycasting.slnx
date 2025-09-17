@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Raycasting.Core/Raycasting.Core.csproj" />
+  <Project Path="Raycasting/Raycasting.Demo.csproj" />
+</Solution>
