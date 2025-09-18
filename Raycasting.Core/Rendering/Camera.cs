@@ -2,7 +2,7 @@ using OpenTK.Mathematics;
 
 namespace Raycasting.Core.Rendering;
 
-public class Camera2D
+public class Camera
 {
     private int _width;
     private int _height;
@@ -11,7 +11,7 @@ public class Camera2D
     public Vector2 Position { get; private set; } = Vector2.Zero;
     public float Zoom { get; set; } = 1.0f;
 
-    public Camera2D(int width, int height)
+    public Camera(int width, int height)
     {
         Resize(width, height);
     }

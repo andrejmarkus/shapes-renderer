@@ -21,13 +21,15 @@ public class App(int width, int height, string title) : GameWindow(GameWindowSet
             _backgroundColor = value;
         }
     }
-    public Camera2D Camera { get; private set; } = null!;
-
+    public Camera Camera { get; private set; } = null!;
     public float DeltaTime { get; private set; }
     public double Time { get; private set; }
 
     public delegate void OnDrawHandler();
+    public delegate void OnKeyDownHandler(KeyboardState keyboardState);
+
     public event OnDrawHandler? OnDraw;
+    public new event OnKeyDownHandler? OnKeyDown;
 
     private void ResizeWindow(int width, int height)
     {
@@ -48,26 +50,7 @@ public class App(int width, int height, string title) : GameWindow(GameWindowSet
             return;
         }
 
-        if (KeyboardState.IsKeyDown(Keys.Escape))
-        {
-            Close();
-        }
-        if (KeyboardState.IsKeyDown(Keys.W))
-        {
-            Camera.SetPosition(Camera.Position + new Vector2(0, 1f) * DeltaTime);
-        }
-        if (KeyboardState.IsKeyDown(Keys.S))
-        {
-            Camera.SetPosition(Camera.Position + new Vector2(0, -1f) * DeltaTime);
-        }
-        if (KeyboardState.IsKeyDown(Keys.A))
-        {
-            Camera.SetPosition(Camera.Position + new Vector2(-1f, 0) * DeltaTime);
-        }
-        if (KeyboardState.IsKeyDown(Keys.D))
-        {
-            Camera.SetPosition(Camera.Position + new Vector2(1f, 0) * DeltaTime);
-        }
+        OnKeyDown?.Invoke(KeyboardState);
     }
 
     protected override void OnLoad()
@@ -77,7 +60,7 @@ public class App(int width, int height, string title) : GameWindow(GameWindowSet
         GL.Enable(EnableCap.DepthTest);
         GL.ClearColor(BackgroundColor);
 
-        Camera = new Camera2D(WindowSize.X, WindowSize.Y);
+        Camera = new Camera(WindowSize.X, WindowSize.Y);
     }
 
     protected override void OnRenderFrame(FrameEventArgs e)

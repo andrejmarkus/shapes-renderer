@@ -23,18 +23,18 @@ public static class Draw
         _begun = true;
     }
 
-    internal static void End(Camera2D camera)
+    internal static void End(Camera camera)
     {
         if (!_begun) return;
         Renderer.End(camera);
         _begun = false;
     }
 
-    public static void DrawTriangle(float x1, float y1, float x2, float y2, float x3, float y3, Color color)
-        => Renderer.DrawTriangle(x1, y1, x2, y2, x3, y3, color);
+    public static void DrawTriangle(float ax, float ay, float bx, float by, float cx, float cy, Color color)
+        => Renderer.DrawTriangle(ax, ay, bx, by, cx, cy, color);
 
-    public static void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color)
-        => Renderer.DrawTriangle(v1, v2, v3, color);
+    public static void DrawTriangle(Vector2 a, Vector2 b, Vector2 c, Color color)
+        => Renderer.DrawTriangle(a.X, a.Y, b.X, b.Y, c.X, c.Y, color);
 
     public static void DrawRectangle(float x, float y, float width, float height, Color color)
         => Renderer.DrawRectangle(x, y, width, height, color);
@@ -56,6 +56,33 @@ public static class Draw
 
     public static void DrawShape(IEnumerable<Vector2> positions, Color color, IEnumerable<uint> indices)
         => Renderer.DrawShape(positions, color, indices);
+
+    internal static void DrawTriangle(float ax, float ay, float bx, float by, float cx, float cy, Color color, Matrix4 model)
+        => Renderer.DrawTriangle(ax, ay, bx, by, cx, cy, color, model);
+
+    internal static void DrawTriangle(Vector2 a, Vector2 b, Vector2 c, Color color, Matrix4 model)
+        => Renderer.DrawTriangle(a.X, a.Y, b.X, b.Y, c.X, c.Y, color, model);
+
+    internal static void DrawRectangle(float x, float y, float width, float height, Color color, Matrix4 model)
+        => Renderer.DrawRectangle(x, y, width, height, color, model);
+
+    internal static void DrawRectangle(Vector2 position, Vector2 size, Color color, Matrix4 model)
+        => Renderer.DrawRectangle(position, size, color, model);
+
+    internal static void DrawCircle(float centerX, float centerY, float radius, Color color, Matrix4 model, int segments = 32)
+        => Renderer.DrawCircle(centerX, centerY, radius, color, segments, model);
+
+    internal static void DrawCircle(Vector2 center, float radius, Color color, Matrix4 model, int segments = 32)
+        => Renderer.DrawCircle(center, radius, color, segments, model);
+
+    internal static void DrawLine(float x1, float y1, float x2, float y2, Color color, Matrix4 model, float thickness = 1.0f)
+        => Renderer.DrawLine(x1, y1, x2, y2, color, thickness, model);
+
+    internal static void DrawLine(Vector2 start, Vector2 end, Color color, Matrix4 model, float thickness = 1.0f)
+        => Renderer.DrawLine(start, end, color, thickness, model);
+
+    internal static void DrawShape(IEnumerable<Vector2> positions, Color color, IEnumerable<uint> indices, Matrix4 model)
+        => Renderer.DrawShape(positions, color, indices, model);
 
     public static void Dispose()
     {
