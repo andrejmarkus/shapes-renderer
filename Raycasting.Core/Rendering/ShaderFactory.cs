@@ -1,6 +1,6 @@
-namespace Raycasting.Core;
+namespace Raycasting.Core.Rendering;
 
-public class ShaderFactory : IDisposable
+internal class ShaderFactory : IDisposable
 {
     private static ShaderFactory? _instance;
     private readonly Dictionary<(string, string), Shader> _shaders = [];

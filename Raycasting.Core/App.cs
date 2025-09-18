@@ -1,20 +1,33 @@
-using System.Runtime.InteropServices;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
+using Raycasting.Core.Rendering;
 
 namespace Raycasting.Core;
 
 public class App(int width, int height, string title) : GameWindow(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title, Flags = ContextFlags.ForwardCompatible })
 {
+    private Color _backgroundColor = Color.DimGray;
+
     public Vector2i WindowSize { get; private set; } = new(width, height);
+    public Color BackgroundColor
+    {
+        get => _backgroundColor;
+        set
+        {
+            GL.ClearColor(value);
+            _backgroundColor = value;
+        }
+    }
     public Camera2D Camera { get; private set; } = null!;
-    public ShapeRenderer ShapeRenderer { get; private set; } = null!;
 
     public float DeltaTime { get; private set; }
     public double Time { get; private set; }
+
+    public delegate void OnDrawHandler();
+    public event OnDrawHandler? OnDraw;
 
     private void ResizeWindow(int width, int height)
     {
@@ -62,10 +75,9 @@ public class App(int width, int height, string title) : GameWindow(GameWindowSet
         base.OnLoad();
 
         GL.Enable(EnableCap.DepthTest);
-        GL.ClearColor(0.1f, 0.2f, 0.3f, 1.0f);
+        GL.ClearColor(BackgroundColor);
 
         Camera = new Camera2D(WindowSize.X, WindowSize.Y);
-        ShapeRenderer = new ShapeRenderer();
     }
 
     protected override void OnRenderFrame(FrameEventArgs e)
@@ -74,12 +86,9 @@ public class App(int width, int height, string title) : GameWindow(GameWindowSet
 
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-        ShapeRenderer.Begin();
-        ShapeRenderer.DrawRectangle(0, 0, 100, 100, Color4.DarkGreen);
-        ShapeRenderer.DrawRectangle(50, 50, 100, 100, Color4.CornflowerBlue);
-        ShapeRenderer.DrawCircle(200, 200, 50, Color4.OrangeRed);
-        ShapeRenderer.DrawLine(300, 300, 400, 400, Color4.Red, 5.0f);
-        ShapeRenderer.End(Camera);
+        Draw.Begin();
+        OnDraw?.Invoke();
+        Draw.End(Camera);
 
         SwapBuffers();
     }
@@ -97,7 +106,7 @@ public class App(int width, int height, string title) : GameWindow(GameWindowSet
         base.OnUnload();
 
         ShaderFactory.Instance.Dispose();
-        ShapeRenderer.Dispose();
+        Draw.Dispose();
     }
 
     protected override void OnMouseMove(MouseMoveEventArgs e)

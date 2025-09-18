@@ -1,8 +1,8 @@
 using OpenTK.Graphics.OpenGL4;
 
-namespace Raycasting.Core;
+namespace Raycasting.Core.Buffers;
 
-public class VertexBufferObject : IDisposable
+internal class VertexBufferObject : IDisposable
 {
     private const int MaxBufferSize = 4 * 1024 * 1024; // 4 MB
 

@@ -1,9 +1,9 @@
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core;
+namespace Raycasting.Core.Rendering;
 
-public class Shader : IDisposable
+internal class Shader : IDisposable
 {
     private bool _disposedValue = false;
     private int _handle;

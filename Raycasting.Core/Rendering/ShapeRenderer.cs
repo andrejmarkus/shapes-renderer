@@ -1,9 +1,10 @@
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
+using Raycasting.Core.Buffers;
 
-namespace Raycasting.Core;
+namespace Raycasting.Core.Rendering;
 
-public class ShapeRenderer : IDisposable
+internal class ShapeRenderer : IDisposable
 {
     private const int VertexSize = 6;
 
@@ -59,6 +60,30 @@ public class ShapeRenderer : IDisposable
         GL.DrawElements(PrimitiveType.Triangles, _indices.Count, DrawElementsType.UnsignedInt, 0);
     }
 
+    public void DrawTriangle(float x1, float y1, float x2, float y2, float x3, float y3, Color4 color)
+    {
+        uint startIndex = (uint)_vertices.Count;
+        _vertices.Add(new Vertex(new Vector2(x1, y1), color)); // 0
+        _vertices.Add(new Vertex(new Vector2(x2, y2), color)); // 1
+        _vertices.Add(new Vertex(new Vector2(x3, y3), color)); // 2
+
+        _indices.Add(startIndex + 0);
+        _indices.Add(startIndex + 1);
+        _indices.Add(startIndex + 2);
+    }
+
+    public void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color4 color)
+    {
+        uint startIndex = (uint)_vertices.Count;
+        _vertices.Add(new Vertex(v1, color)); // 0
+        _vertices.Add(new Vertex(v2, color)); // 1
+        _vertices.Add(new Vertex(v3, color)); // 2
+
+        _indices.Add(startIndex + 0);
+        _indices.Add(startIndex + 1);
+        _indices.Add(startIndex + 2);
+    }
+
     public void DrawRectangle(float x, float y, float width, float height, Color4 color)
     {
         var topLeft = new Vector2(x, y);
@@ -78,6 +103,11 @@ public class ShapeRenderer : IDisposable
         _indices.Add(startIndex + 0);
         _indices.Add(startIndex + 2);
         _indices.Add(startIndex + 3);
+    }
+
+    public void DrawRectangle(Vector2 position, Vector2 size, Color4 color)
+    {
+        DrawRectangle(position.X, position.Y, size.X, size.Y, color);
     }
 
     public void DrawCircle(float centerX, float centerY, float radius, Color4 color, int segments = 32)
@@ -103,6 +133,11 @@ public class ShapeRenderer : IDisposable
         }
     }
 
+    public void DrawCircle(Vector2 center, float radius, Color4 color, int segments = 32)
+    {
+        DrawCircle(center.X, center.Y, radius, color, segments);
+    }
+
     public void DrawLine(float x1, float y1, float x2, float y2, Color4 color, float thickness = 1.0f)
     {
         Vector2 direction = new Vector2(x2 - x1, y2 - y1);
@@ -126,6 +161,11 @@ public class ShapeRenderer : IDisposable
         _indices.Add(startIndex + 0);
         _indices.Add(startIndex + 2);
         _indices.Add(startIndex + 3);
+    }
+
+    public void DrawLine(Vector2 start, Vector2 end, Color4 color, float thickness = 1.0f)
+    {
+        DrawLine(start.X, start.Y, end.X, end.Y, color, thickness);
     }
 
 

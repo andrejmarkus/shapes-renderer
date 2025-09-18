@@ -1,8 +1,8 @@
 using OpenTK.Graphics.OpenGL4;
 
-namespace Raycasting.Core;
+namespace Raycasting.Core.Buffers;
 
-public class VertexArrayObject : IDisposable
+internal class VertexArrayObject : IDisposable
 {
     private readonly int _handle;
 

@@ -1,6 +1,6 @@
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core;
+namespace Raycasting.Core.Rendering;
 
 public class Camera2D
 {
@@ -35,10 +35,10 @@ public class Camera2D
 
     private void Rebuild()
     {
-        var hw = _width * 0.5f / Zoom;
-        var hh = _height * 0.5f / Zoom;
+        var hw = _width / Zoom;
+        var hh = _height / Zoom;
 
-        var proj = Matrix4.CreateOrthographicOffCenter(-hw, hw, -hh, hh, -1.0f, 1.0f);
+        var proj = Matrix4.CreateOrthographicOffCenter(0, hw, 0, hh, -1.0f, 1.0f);
         var view = Matrix4.CreateTranslation(-Position.X, -Position.Y, 0.0f);
 
         ViewProj = view * proj;
