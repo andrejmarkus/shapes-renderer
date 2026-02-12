@@ -1,7 +1,7 @@
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core.Rendering;
+namespace ShapesRenderer.Core.Rendering;
 
 internal class Shader : IDisposable
 {

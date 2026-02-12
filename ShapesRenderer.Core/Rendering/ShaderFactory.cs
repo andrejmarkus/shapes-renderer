@@ -1,4 +1,4 @@
-namespace Raycasting.Core.Rendering;
+namespace ShapesRenderer.Core.Rendering;
 
 internal class ShaderFactory : IDisposable
 {

@@ -1,7 +1,7 @@
-using Raycasting.Core.Rendering;
+using ShapesRenderer.Core.Rendering;
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core;
+namespace ShapesRenderer.Core;
 
 public static class Draw
 {

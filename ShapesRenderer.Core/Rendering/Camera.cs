@@ -1,6 +1,6 @@
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core.Rendering;
+namespace ShapesRenderer.Core.Rendering;
 
 public class Camera
 {

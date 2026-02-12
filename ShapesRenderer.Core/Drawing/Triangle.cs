@@ -1,6 +1,6 @@
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core.Drawing;
+namespace ShapesRenderer.Core.Drawing;
 
 public class Triangle(Vector2 a, Vector2 b, Vector2 c, Color color) : Shape(a, color)
 {

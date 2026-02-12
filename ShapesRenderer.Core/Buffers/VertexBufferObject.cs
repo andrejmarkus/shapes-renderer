@@ -1,6 +1,6 @@
 using OpenTK.Graphics.OpenGL4;
 
-namespace Raycasting.Core.Buffers;
+namespace ShapesRenderer.Core.Buffers;
 
 internal class VertexBufferObject : IDisposable
 {

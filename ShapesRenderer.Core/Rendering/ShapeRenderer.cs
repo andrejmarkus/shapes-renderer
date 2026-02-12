@@ -1,8 +1,8 @@
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
-using Raycasting.Core.Buffers;
+using ShapesRenderer.Core.Buffers;
 
-namespace Raycasting.Core.Rendering;
+namespace ShapesRenderer.Core.Rendering;
 
 
 internal class ShapeRenderer : IDisposable

@@ -1,6 +1,6 @@
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core.Drawing;
+namespace ShapesRenderer.Core.Drawing;
 
 public class Circle(Vector2 position, float radius, Color color) : Shape(position, color)
 {

@@ -1,6 +1,6 @@
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core.Drawing;
+namespace ShapesRenderer.Core.Drawing;
 
 public class Rectangle(Vector2 position, Vector2 size, Color color) : Shape(position, color)
 {

@@ -3,9 +3,9 @@ using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
-using Raycasting.Core.Rendering;
+using ShapesRenderer.Core.Rendering;
 
-namespace Raycasting.Core;
+namespace ShapesRenderer.Core;
 
 public class App(int width, int height, string title) : GameWindow(GameWindowSettings.Default, new NativeWindowSettings() { ClientSize = (width, height), Title = title, Flags = ContextFlags.ForwardCompatible })
 {

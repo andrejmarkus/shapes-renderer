@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ShapesRenderer.Core/ShapesRenderer.Core.csproj" />
+  <Project Path="ShapesRenderer.Demo/ShapesRenderer.Demo.csproj" />
+</Solution>

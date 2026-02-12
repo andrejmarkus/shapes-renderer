@@ -1,6 +1,6 @@
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core.Drawing;
+namespace ShapesRenderer.Core.Drawing;
 
 public class Line(Vector2 start, Vector2 end, Color color, float thickness = 1.0f) : Shape(start, color)
 {

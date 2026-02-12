@@ -1,6 +1,6 @@
 using OpenTK.Mathematics;
 
-namespace Raycasting.Core.Drawing;
+namespace ShapesRenderer.Core.Drawing;
 
 public abstract class Shape(Vector2 position, Color color)
 {

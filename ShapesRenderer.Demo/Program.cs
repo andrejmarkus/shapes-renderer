@@ -1,15 +1,15 @@
-﻿using OpenTK.Mathematics;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.GraphicsLibraryFramework;
-using Raycasting.Core;
-using Raycasting.Core.Drawing;
+using ShapesRenderer.Core;
+using ShapesRenderer.Core.Drawing;
 
-namespace Raycasting.Demo;
+namespace ShapesRenderer.Demo;
 
 public class Program
 {
     static void Main(string[] args)
     {
-        using App game = new(800, 600, "Raycasting");
+        using App game = new(800, 600, "ShapesRenderer");
 
         // var shape = new Triangle(new Vector2(400, 300), new Vector2(500, 450), new Vector2(300, 450), Color.Red);
         var shape = new Rectangle(350, 250, 100, 100, Color.Red);
